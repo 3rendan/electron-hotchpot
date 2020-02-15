@@ -20,30 +20,24 @@ class Index extends React.Component {
     .catch(error => console.error(error))
   }
 
-  handleUpdate = (id) => {
-      // e.preventDefault();
-      // console.log(`http://localhost:3001/Items/${id}`)
-      const Items = {
-          title: this.state.title,
-          author: this.state.author,
-          accession_number: this.state.accession_number
-      };
-      const updateItem = [];
-      console.log(id)
-      fetch(`http://localhost:3000/items/${id}`,
-        {
-          method: "PUT"
-        })
-       .then(updatedItem => {
-         return updatedItem.json()
-       })
-       .then(updatedItem => {
-         // updatedItem.push(Items);
-         console.log(updatedItem)
-         // this.props.getItems()
-       })
-       .catch(error => console.log(error))
-      }
+  // handleUpdate = (item, item.id) => {
+  //   fetch('/items/' + item.id, {
+  //     body: JSON.stringify(item),
+  //     method: 'PUT',
+  //     headers: {
+  //       'Accept': 'application/json, text/plain, */*',
+  //       'Content-Type': 'application/json'
+  //     }
+  //   })
+  //   .then(updatedItem => updatedItem.json())
+  //   .then(jsonedItem => {
+  //     fetch('/items')
+  //       .then(response => response.json())
+  //       .then(items => {
+  //         this.setState({ items: items })
+  //       })
+  //   })
+  // }
   deleteItem = (id, i) =>{
     fetch("http://localhost:3000/items/" + id,
       {
