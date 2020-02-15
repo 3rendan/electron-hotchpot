@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    @items = Item.all
+    @items = Item.all.reverse
 
     render json: @items
   end
@@ -22,6 +22,10 @@ class ItemsController < ApplicationController
     else
       render json: @item.errors, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @item = Item.find(params[:id])
   end
 
   # PATCH/PUT /items/1

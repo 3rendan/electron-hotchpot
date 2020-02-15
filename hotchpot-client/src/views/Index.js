@@ -1,7 +1,7 @@
 import React from "react";
 // import "src/css/main.css";
 import Items from "./Items.js";
-// import ShowItem from "./ShowItem.js";
+import ShowItem from "./ShowItem.js";
 import NewItems from "./NewItems.js";
 import UpdateItem from "./UpdateItem.js";
 // import Show from "./components/Show.js";
@@ -20,24 +20,26 @@ class Index extends React.Component {
     .catch(error => console.error(error))
   }
 
-  // handleUpdate = (item, item.id) => {
-  //   fetch('/items/' + item.id, {
-  //     body: JSON.stringify(item),
-  //     method: 'PUT',
-  //     headers: {
-  //       'Accept': 'application/json, text/plain, */*',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(updatedItem => updatedItem.json())
-  //   .then(jsonedItem => {
-  //     fetch('/items')
-  //       .then(response => response.json())
-  //       .then(items => {
-  //         this.setState({ items: items })
-  //       })
-  //   })
-  // }
+  handleUpdate = (id) => {
+    console.log(id);
+
+    fetch('/items/' + id, {
+      body: JSON.stringify(),
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(updatedItem => updatedItem.json())
+    .then(jsonedItem => {
+      fetch('/items')
+        .then(response => response.json())
+        .then(items => {
+          this.setState({ items: items })
+        })
+    })
+  }
   deleteItem = (id, i) =>{
     fetch("http://localhost:3000/items/" + id,
       {
@@ -62,6 +64,9 @@ render(){
         </>
         <>
           <Items deleteItem={this.deleteItem} handleUpdate={this.handleUpdate} items={this.state.items} />
+        </>
+        <>
+          <ShowItem title="m"/>
         </>
       </div>
       </div>
